@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate of Completion — AI Learning Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  body {
+    background: #f4f6f5;
+    margin: 0;
+    padding: 0;
+    font-family: 'Work Sans', sans-serif;
+  }
+  
+  .certificate-wrapper {
+    max-width: 842px; /* standard A4 landscape width ratio */
+    margin: 40px auto;
+    padding: 20px;
+  }
+
+  .certificate-card {
+    background: #ffffff;
+    border: 15px double #D4AF37;
+    padding: 60px 80px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(18,33,29,0.08);
+    background-image: radial-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 0),
+                      radial-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 0);
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;
+  }
+
+  .cert-header {
+    font-family: 'Spectral', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #12211D;
+    margin-top: 0;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .cert-sub {
+    font-size: 0.95rem;
+    color: #CC6B3C;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .cert-text {
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: #4a6058;
+    margin-bottom: 20px;
+  }
+
+  .cert-name {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #12211D;
+    border-bottom: 2px solid #e1e8e5;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-bottom: 30px;
+    min-width: 320px;
+  }
+
+  .cert-reason {
+    font-size: 1rem;
+    color: #4a6058;
+    line-height: 1.6;
+    margin: 0 auto 40px;
+    max-width: 600px;
+  }
+
+  .cert-career {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #12211D;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .cert-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 60px;
+    border-top: 1px solid #e1e8e5;
+    padding-top: 30px;
+  }
+
+  .meta-col {
+    text-align: left;
+  }
+
+  .meta-val {
+    font-weight: 600;
+    color: #12211D;
+    font-size: 0.95rem;
+  }
+
+  .meta-label {
+    font-size: 0.8rem;
+    color: #8c9e96;
+    text-transform: uppercase;
+    margin-top: 5px;
+    letter-spacing: 1px;
+  }
+
+  .cert-seal {
+    width: 90px;
+    height: 90px;
+    border: 2px dashed #D4AF37;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(212,175,55,0.05);
+    color: #D4AF37;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    transform: rotate(-10deg);
+  }
+
+  .action-bar {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+
+  @media print {
+    body {
+      background: none;
+    }
+    .action-bar, .site-nav {
+      display: none !important;
+    }
+    .certificate-wrapper {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+    }
+    .certificate-card {
+      box-shadow: none;
+      border-color: #D4AF37;
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="dashboard.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 20L9 6L13 15L16 9L21 20" stroke="#CC6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Trailhead
+    </a>
+    <ul class="nav-links">
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="career-advisor.html">Career Advisor</a></li>
+      <li><a href="learning-planner.html">Learning Planner</a></li>
+      <li><a href="skill-gap.html">Skill Gap</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="phases.html" class="active">Roadmap</a></li>
+      <li><a href="chat.html">AI Chat</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li id="mentorNavLink" class="hidden"><a href="mentor-dashboard.html">Mentor Dashboard</a></li>
+      <li><a href="#" data-logout>Log out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="certificate-wrapper">
+  <div class="certificate-card">
+    <h1 class="cert-header">Certificate of Completion</h1>
+    <div class="cert-sub">Trailhead Learning Network</div>
+    
+    <div class="cert-text">This certifies that</div>
+    <div class="cert-name" id="studentName">Loading...</div>
+    
+    <div class="cert-text">has successfully mastered all milestones and requirements for the career trail</div>
+    <div class="cert-career" id="careerGoal">Loading...</div>
+    <div class="cert-reason">Demonstrating practical skills through completed phase projects, maintaining a consistent study schedule, and passing all proctored technical assessments.</div>
+    
+    <div class="cert-meta-row">
+      <div class="meta-col">
+        <div class="meta-val" id="completedDate">Loading...</div>
+        <div class="meta-label">Date Completed</div>
+      </div>
+      <div class="meta-col">
+        <div class="cert-seal">
+          Trailhead<br>Certified
+        </div>
+      </div>
+      <div class="meta-col" style="text-align: right;">
+        <div class="meta-val" id="verificationCode" style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">Loading...</div>
+        <div class="meta-label">Certificate Code</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="action-bar">
+    <button class="btn btn-primary" onclick="window.print()" style="padding: 12px 30px; font-size: 1rem;">Print / Save as PDF</button>
+    <a href="phases.html" class="btn btn-secondary" style="padding: 12px 30px; font-size: 1rem; margin-left: 10px;">Back to Roadmap</a>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    Auth.requireLogin();
+    
+    const params = new URLSearchParams(window.location.search);
+    const planId = params.get("plan_id");
+    
+    if (!planId) {
+      alert("No learning plan ID specified.");
+      window.location.href = "phases.html";
+      return;
+    }
+    
+    try {
+      const data = await apiRequest(`/api/certificate/${planId}`);
+      document.getElementById("studentName").textContent = data.student_name;
+      document.getElementById("careerGoal").textContent = data.career_name;
+      document.getElementById("completedDate").textContent = data.completed_at;
+      document.getElementById("verificationCode").textContent = data.certificate_code;
+    } catch (err) {
+      alert("Could not load certificate: " + err.message);
+      window.location.href = "phases.html";
+    }
+  });
+</script>
+</body>
+</html>

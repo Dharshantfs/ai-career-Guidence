@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — AI Learning Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="dashboard.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 20L9 6L13 15L16 9L21 20" stroke="#CC6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Trailhead
+    </a>
+    <ul class="nav-links">
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="career-advisor.html">Career Advisor</a></li>
+      <li><a href="learning-planner.html">Learning Planner</a></li>
+      <li><a href="skill-gap.html">Skill Gap</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="phases.html">Roadmap</a></li>
+      <li><a href="chat.html">AI Chat</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li id="mentorNavLink" class="hidden"><a href="mentor-dashboard.html">Mentor Dashboard</a></li>
+      <li><a href="#" data-logout>Log out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <span class="eyebrow">Basecamp</span>
+    <h1>Welcome back, <span data-user-name>student</span></h1>
+    <p>Here's everything about your journey in one place.</p>
+  </div>
+</header>
+
+<main class="app-main">
+  <div class="container">
+
+    <div class="empty-state hidden" id="emptyState">
+      <h3>Let's get you set up</h3>
+      <p>Complete your student profile to unlock career recommendations and a learning plan.</p>
+      <a href="profile.html" class="btn btn-primary">Create my profile</a>
+    </div>
+
+    <div id="dashboardContent" class="hidden">
+
+      <!-- Progress summary -->
+      <div class="card" style="margin-bottom:24px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+          <div>
+            <span class="career-meta">Overall progress</span>
+            <div class="progress-stat"><span id="progressPercent">0</span>%</div>
+          </div>
+          <div style="flex:1;min-width:200px;">
+            <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%;"></div></div>
+            <p class="hint" style="margin-top:8px;margin-bottom:0;" id="progressSubtext">No tasks yet</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <!-- Left column: profile + career -->
+        <div>
+          <div class="card" style="margin-bottom:24px;">
+            <span class="career-meta">Student profile</span>
+            <h3 class="mt-0" id="profileName">—</h3>
+            <div id="profileDetails"></div>
+            <a href="profile.html" class="btn btn-secondary" style="margin-top:8px;">Edit profile</a>
+          </div>
+
+          <div class="card" style="margin-bottom:24px;" id="streakCard">
+            <span class="career-meta">Streaks & Achievements</span>
+            <div style="display:flex;align-items:center;gap:15px;margin-top:10px;margin-bottom:15px;">
+              <div style="font-size:2.5rem;display:flex;align-items:center;justify-content:center;background:rgba(204,107,60,0.1);border-radius:50%;width:64px;height:64px;">
+                🔥
+              </div>
+              <div>
+                <div style="font-size:1.4rem;font-weight:600;color:var(--accent);line-height:1.2;" id="currentStreakVal">0 days</div>
+                <div class="hint" style="margin:0;">Current study streak (longest: <span id="longestStreakVal">0</span> days)</div>
+              </div>
+            </div>
+            <p style="font-weight:500;margin-bottom:8px;font-size:0.9rem;color:var(--ink);">Your Badges</p>
+            <div id="badgesContainer" style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span class="hint">Earn streaks and complete phases to unlock badges!</span>
+            </div>
+          </div>
+
+          <div class="card hidden" id="careerCard">
+            <span class="career-meta">Selected career</span>
+            <h3 class="mt-0" id="careerName">—</h3>
+            <p id="careerDescription"></p>
+            <div id="careerSkills"></div>
+          </div>
+          <div class="empty-state hidden" id="noCareerCard">
+            <h3>No career selected</h3>
+            <p>Visit the Career Advisor to choose your path.</p>
+            <a href="career-advisor.html" class="btn btn-primary">Career Advisor</a>
+          </div>
+        </div>
+
+        <!-- Right column: progress tracker -->
+        <div>
+          <div class="card hidden" id="congratsCard" style="margin-bottom: 24px; border: 1px solid var(--accent); background: rgba(204,107,60,0.05);">
+            <h3 class="mt-0" id="congratsTitle">All Tasks Done! 🎉</h3>
+            <p id="congratsText" style="color:var(--ink); margin-bottom:14px;"></p>
+            <a href="phases.html" class="btn btn-primary" id="congratsBtn">Go to my Roadmap</a>
+          </div>
+
+          <div id="taskGroups"></div>
+          <div class="empty-state hidden" id="noPlanCard">
+            <h3>No learning plan yet</h3>
+            <p>Generate one to start tracking progress.</p>
+            <a href="learning-planner.html" class="btn btn-primary">Learning Planner</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

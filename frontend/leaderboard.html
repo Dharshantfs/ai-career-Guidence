@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard — AI Learning Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="dashboard.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 20L9 6L13 15L16 9L21 20" stroke="#CC6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Trailhead
+    </a>
+    <ul class="nav-links">
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="career-advisor.html">Career Advisor</a></li>
+      <li><a href="learning-planner.html">Learning Planner</a></li>
+      <li><a href="skill-gap.html">Skill Gap</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="phases.html">Roadmap</a></li>
+      <li><a href="chat.html">AI Chat</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li id="mentorNavLink" class="hidden"><a href="mentor-dashboard.html">Mentor Dashboard</a></li>
+      <li><a href="#" data-logout>Log out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <span class="eyebrow">Bragging rights</span>
+    <h1>Leaderboard</h1>
+    <p>Ranked by streak days, badges, and completed phases across every student.</p>
+  </div>
+</header>
+
+<main class="app-main">
+  <div class="container">
+
+    <div class="empty-state hidden" id="emptyState">
+      <h3>No one's on the board yet</h3>
+      <p class="hint">Complete your profile and start a roadmap to appear here.</p>
+    </div>
+
+    <div class="card hidden" id="boardCard">
+      <table class="data-table" id="leaderboardTable" style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr style="text-align:left;border-bottom:2px solid var(--border,#ddd);">
+            <th style="padding:10px 8px;">#</th>
+            <th style="padding:10px 8px;">Name</th>
+            <th style="padding:10px 8px;">Streak</th>
+            <th style="padding:10px 8px;">Longest streak</th>
+            <th style="padding:10px 8px;">Badges</th>
+            <th style="padding:10px 8px;">Phases done</th>
+            <th style="padding:10px 8px;">Points</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </div>
+
+  </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/leaderboard.js"></script>
+</body>
+</html>

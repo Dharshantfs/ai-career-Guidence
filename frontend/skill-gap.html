@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Gap Analysis — AI Learning Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="dashboard.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 20L9 6L13 15L16 9L21 20" stroke="#CC6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Trailhead
+    </a>
+    <ul class="nav-links">
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="career-advisor.html">Career Advisor</a></li>
+      <li><a href="learning-planner.html">Learning Planner</a></li>
+      <li><a href="skill-gap.html" class="active">Skill Gap</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="phases.html">Roadmap</a></li>
+      <li><a href="chat.html">AI Chat</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li id="mentorNavLink" class="hidden"><a href="mentor-dashboard.html">Mentor Dashboard</a></li>
+      <li><a href="#" data-logout>Log out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <span class="eyebrow">Waypoint check</span>
+    <h1>Skill Gap Analysis</h1>
+    <p>See exactly which skills you already have, which ones you're missing for your target career, and where to learn them.</p>
+  </div>
+</header>
+
+<main class="app-main">
+  <div class="container" style="max-width:820px;">
+
+    <!-- No career selected yet -->
+    <div class="empty-state hidden" id="noCareerState">
+      <h3>No career selected yet</h3>
+      <p>Visit the Career Advisor first and choose the career you're aiming for.</p>
+      <a href="career-advisor.html" class="btn btn-primary">Go to Career Advisor</a>
+    </div>
+
+    <!-- Career known, ready to analyze -->
+    <div class="card hidden" id="analyzeCard">
+      <span class="career-meta">Target career</span>
+      <h3 class="mt-0" id="careerNameText"></h3>
+      <p>Compare your current skills against what this career requires.</p>
+      <div class="form-error" id="errorBanner"></div>
+      <button class="btn btn-primary" id="analyzeBtn">Analyze my skill gap</button>
+    </div>
+
+    <!-- Loading: analysis -->
+    <div class="card text-center hidden" id="loadingAnalysisCard" style="margin-top:24px;">
+      <span class="spinner spinner-dark"></span>
+      <p style="margin-top:14px;">Comparing your skills against the career requirements...</p>
+    </div>
+
+    <!-- Results: skill gap -->
+    <div id="resultsWrap" class="hidden" style="margin-top:24px;">
+      <div class="card">
+        <span class="career-meta">Analysis for <span id="resultCareerName"></span></span>
+        <p id="summaryText" class="mt-0"></p>
+
+        <p><strong>Skills you already have</strong></p>
+        <div id="matchedSkillsWrap" style="margin-bottom:16px;"></div>
+
+        <p><strong>Skills you still need</strong></p>
+        <div id="missingSkillsWrap" style="margin-bottom:16px;"></div>
+
+        <button class="btn btn-primary" id="reanalyzeBtn">Re-analyze</button>
+      </div>
+
+      <!-- Course recommendations -->
+      <div class="card" style="margin-top:24px;" id="coursesCard">
+        <span class="career-meta">Next step</span>
+        <h3 class="mt-0">Recommended courses for your missing skills</h3>
+        <p id="allCaughtUpText" class="hidden">You're not missing any required skills right now — great work!</p>
+
+        <button class="btn btn-primary" id="getCoursesBtn">Recommend courses, tutorials & certifications</button>
+
+        <div class="card text-center hidden" id="loadingCoursesCard" style="margin-top:20px;box-shadow:none;border:none;padding:0;">
+          <span class="spinner spinner-dark"></span>
+          <p style="margin-top:14px;">Finding suitable courses for each missing skill...</p>
+        </div>
+
+        <div id="courseList" style="margin-top:20px;"></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/skill-gap.js"></script>
+</body>
+</html>

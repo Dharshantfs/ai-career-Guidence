@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: ai-learning-planner
+    env: python
+    buildCommand: "cd backend && pip install -r requirements.txt"
+    startCommand: "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: JWT_EXPIRE_MINUTES
+        value: 1440
+      - key: FRONTEND_URL
+        # Set this to the actual Render URL after deploying, e.g., https://ai-learning-planner.onrender.com
+        value: http://localhost:8000

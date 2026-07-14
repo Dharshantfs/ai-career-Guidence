@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Advisor — AI Learning Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="dashboard.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 20L9 6L13 15L16 9L21 20" stroke="#CC6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Trailhead
+    </a>
+    <ul class="nav-links">
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="career-advisor.html">Career Advisor</a></li>
+      <li><a href="learning-planner.html">Learning Planner</a></li>
+      <li><a href="skill-gap.html">Skill Gap</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="phases.html">Roadmap</a></li>
+      <li><a href="chat.html">AI Chat</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li id="mentorNavLink" class="hidden"><a href="mentor-dashboard.html">Mentor Dashboard</a></li>
+      <li><a href="#" data-logout>Log out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <span class="eyebrow">Waypoint 2</span>
+    <h1>AI Career Advisor</h1>
+    <p>A few quick questions, then five career trails worth exploring.</p>
+  </div>
+</header>
+
+<main class="app-main">
+  <div class="container" style="max-width:760px;">
+
+    <!-- Shown if the student already set a career goal in their profile -->
+    <div class="card hidden" id="goalKnownCard" style="margin-bottom:24px;">
+      <span class="career-meta">Career goal already set</span>
+      <h3 id="goalKnownText" class="mt-0"></h3>
+      <p>You can head straight to your Learning Planner, or explore AI-recommended alternatives below anyway.</p>
+      <a href="learning-planner.html" class="btn btn-primary">Go to Learning Planner</a>
+    </div>
+
+    <!-- Questionnaire -->
+    <div class="card" id="questionCard">
+      <span class="career-meta">Tell us a bit more</span>
+      <h3 class="mt-0">Help the AI understand you</h3>
+      <div class="form-error" id="errorBanner"></div>
+
+      <form id="questionForm">
+        <div class="field">
+          <label for="favorite_subjects">Favorite subjects</label>
+          <input type="text" id="favorite_subjects" placeholder="e.g. Data Structures, Physics, Design" required>
+        </div>
+        <div class="field">
+          <label for="strengths">Your strengths</label>
+          <input type="text" id="strengths" placeholder="e.g. Problem solving, communication, patience" required>
+        </div>
+        <div class="field">
+          <label for="preferred_work_style">Preferred work style</label>
+          <select id="preferred_work_style" required>
+            <option value="">Select...</option>
+            <option value="team-based, collaborative">Team-based, collaborative</option>
+            <option value="independent, self-driven">Independent, self-driven</option>
+            <option value="research-oriented, analytical">Research-oriented, analytical</option>
+            <option value="hands-on, practical building">Hands-on, practical building</option>
+            <option value="creative, design-focused">Creative, design-focused</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+          Get my 5 career recommendations
+        </button>
+      </form>
+    </div>
+
+    <!-- Loading state -->
+    <div class="card text-center hidden" id="loadingCard" style="margin-top:24px;">
+      <span class="spinner spinner-dark"></span>
+      <p style="margin-top:14px;">Gemini is analyzing your profile and mapping career options...</p>
+    </div>
+
+    <!-- Results -->
+    <div id="resultsWrap" class="hidden" style="margin-top:32px;">
+      <div class="section-head" style="text-align:left;margin-bottom:24px;">
+        <span class="eyebrow" style="justify-content:flex-start;">Your top 5 matches</span>
+        <h2 style="font-size:1.5rem;">Pick the trail you want to follow</h2>
+      </div>
+      <div id="careerList"></div>
+    </div>
+
+  </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/career.js"></script>
+</body>
+</html>

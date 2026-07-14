@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap — AI Learning Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="dashboard.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 20L9 6L13 15L16 9L21 20" stroke="#CC6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Trailhead
+    </a>
+    <ul class="nav-links">
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="career-advisor.html">Career Advisor</a></li>
+      <li><a href="learning-planner.html">Learning Planner</a></li>
+      <li><a href="skill-gap.html">Skill Gap</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="phases.html" class="active">Roadmap</a></li>
+      <li><a href="chat.html">AI Chat</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li id="mentorNavLink" class="hidden"><a href="mentor-dashboard.html">Mentor Dashboard</a></li>
+      <li><a href="#" data-logout>Log out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <span class="eyebrow">Phased Roadmap</span>
+    <h1>Your month-by-month journey</h1>
+    <p>Real durations, one project per phase, and a short test before the next phase unlocks.</p>
+  </div>
+</header>
+
+<main class="app-main">
+  <div class="container">
+
+    <!-- No learning plan yet -->
+    <div class="empty-state hidden" id="noPlanState">
+      <h3>No learning plan yet</h3>
+      <p>Generate a learning plan first, then come back here to break it into phases.</p>
+      <a href="learning-planner.html" class="btn btn-primary">Go to Learning Planner</a>
+    </div>
+
+    <!-- No phases generated yet, but a plan exists -->
+    <div class="empty-state hidden" id="noPhasesState">
+      <h3>Turn your plan into a phased roadmap</h3>
+      <p>Instead of one flat plan, split your goal into realistic multi-week phases — each with its own tasks, a project, and a test before unlocking the next.</p>
+      <button class="btn btn-primary" id="generatePhasesBtn">Generate phased roadmap</button>
+    </div>
+
+    <div class="card hidden" id="focusModeCard" style="margin-bottom:24px;">
+      <div class="focus-toggle-row">
+        <div>
+          <h3 class="mt-0" style="margin-bottom:4px;">Focus Mode</h3>
+          <p class="hint" style="margin:0;">While on, switching to another browser tab (e.g. Instagram, Facebook) during this session sends you a nudge. Note: this only sees this browser tab — it can't monitor other apps on your device.</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span class="focus-status" id="focusStatus">Off</span>
+          <button class="btn btn-secondary" id="focusToggleBtn">Turn on</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card hidden" id="certificateCard" style="margin-bottom:24px; border: 2px solid #D4AF37; background: linear-gradient(135deg, rgba(212,175,55,0.05) 0%, rgba(212,175,55,0.1) 100%);">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+        <div>
+          <span class="career-meta" style="color:#D4AF37; border-color:#D4AF37;">Milestone Reached!</span>
+          <h3 class="mt-0" style="margin-top:4px; font-size:1.4rem;">Roadmap Completed Successfully</h3>
+          <p class="hint" style="margin:0; color:var(--ink);">You have finished all learning phases and passed all tests. You can now view and print your Certificate of Completion.</p>
+        </div>
+        <div>
+          <a href="#" id="viewCertificateBtn" target="_blank" class="btn" style="background:#D4AF37; border-color:#D4AF37; color:#12211D; font-weight:600;">View Certificate</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="phasesList"></div>
+
+  </div>
+</main>
+
+<!-- Project submission modal -->
+<div class="empty-state hidden" id="submitModalOverlay" style="position:fixed;inset:0;background:rgba(18,33,29,0.6);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;text-align:left;">
+  <div class="card" style="max-width:560px;width:100%;max-height:85vh;overflow-y:auto;">
+    <h3 class="mt-0" id="submitModalTitle">Submit your project</h3>
+    <p class="hint" id="submitModalBrief"></p>
+    <div class="field">
+      <label>Submission type</label>
+      <select id="submissionType">
+        <option value="code">Paste code</option>
+        <option value="link">GitHub / live link</option>
+        <option value="file">Upload a file</option>
+      </select>
+    </div>
+    <div class="field" id="submissionContentField">
+      <label id="submissionContentLabel">Your code</label>
+      <textarea id="submissionContent" style="min-height:180px;font-family:var(--font-mono);font-size:0.85rem;" placeholder="Paste your project code here..."></textarea>
+    </div>
+    <div class="field hidden" id="submissionFileField">
+      <label>Project file</label>
+      <input type="file" id="submissionFile" accept=".py,.js,.ts,.jsx,.tsx,.java,.c,.cpp,.cs,.go,.rb,.php,.html,.css,.json,.md,.txt,.sql,.sh,.zip" />
+      <p class="hint">Single source file or a .zip archive, up to 5 MB.</p>
+    </div>
+    <div class="form-error" id="submitError"></div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-primary" id="submitProjectBtn">Submit for review</button>
+      <button class="btn btn-secondary" id="cancelSubmitBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Proctored test overlay -->
+<div class="test-overlay hidden" id="testOverlay">
+  <div class="container">
+    <div class="test-warning-banner" id="testWarningBanner"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:10px;">
+      <h2 style="color:var(--fog);margin:0;" id="testTitle">Phase Test</h2>
+      <span class="test-violation-count" id="violationCount">Violations: 0 / 3</span>
+    </div>
+    <div id="testQuestions"></div>
+    <div style="display:flex;gap:12px;margin-top:10px;">
+      <button class="btn btn-primary" id="submitTestBtn">Submit test</button>
+    </div>
+  </div>
+</div>
+
+<!-- Test result modal -->
+<div class="empty-state hidden" id="testResultOverlay" style="position:fixed;inset:0;background:rgba(18,33,29,0.6);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div class="card" style="max-width:440px;width:100%;text-align:center;">
+    <h3 class="mt-0" id="testResultTitle">Result</h3>
+    <p id="testResultBody"></p>
+    <button class="btn btn-primary" id="closeTestResultBtn">Continue</button>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/phases.js"></script>
+</body>
+</html>

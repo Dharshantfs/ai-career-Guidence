@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentor Dashboard — AI Learning Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="mentor-dashboard.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 20L9 6L13 15L16 9L21 20" stroke="#CC6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Trailhead
+    </a>
+    <ul class="nav-links">
+      <li><a href="mentor-dashboard.html">Mentor Dashboard</a></li>
+      <li><a href="#" data-logout>Log out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <span class="eyebrow">Cohort view</span>
+    <h1>Your students</h1>
+    <p>Share your mentor code below — students add it on their profile page to link themselves to this dashboard.</p>
+  </div>
+</header>
+
+<main class="app-main">
+  <div class="container">
+
+    <div class="card">
+      <h3 class="mt-0">Your mentor code</h3>
+      <p class="hint">Give this to students so they can link to your cohort.</p>
+      <code id="mentorCodeDisplay" style="font-size:1.4rem;font-family:var(--font-mono);letter-spacing:2px;"></code>
+    </div>
+
+    <div class="empty-state hidden" id="emptyState" style="margin-top:20px;">
+      <h3>No students linked yet</h3>
+      <p class="hint">Once a student enters your code on their profile page, they'll show up here.</p>
+    </div>
+
+    <div class="card hidden" id="studentsCard" style="margin-top:20px;">
+      <table class="data-table" style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr style="text-align:left;border-bottom:2px solid var(--border,#ddd);">
+            <th style="padding:10px 8px;">Student</th>
+            <th style="padding:10px 8px;">Email</th>
+            <th style="padding:10px 8px;">Career goal</th>
+            <th style="padding:10px 8px;">Progress</th>
+            <th style="padding:10px 8px;">Streak</th>
+            <th style="padding:10px 8px;">Phases done</th>
+            <th style="padding:10px 8px;">Last active</th>
+          </tr>
+        </thead>
+        <tbody id="studentsBody"></tbody>
+      </table>
+    </div>
+
+  </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/mentor.js"></script>
+</body>
+</html>

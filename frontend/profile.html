@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Profile — AI Learning Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="dashboard.html" class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 20L9 6L13 15L16 9L21 20" stroke="#CC6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Trailhead
+    </a>
+    <ul class="nav-links">
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="career-advisor.html">Career Advisor</a></li>
+      <li><a href="learning-planner.html">Learning Planner</a></li>
+      <li><a href="skill-gap.html">Skill Gap</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="phases.html">Roadmap</a></li>
+      <li><a href="chat.html">AI Chat</a></li>
+      <li><a href="leaderboard.html">Leaderboard</a></li>
+      <li id="mentorNavLink" class="hidden"><a href="mentor-dashboard.html">Mentor Dashboard</a></li>
+      <li><a href="#" data-logout>Log out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <span class="eyebrow">Waypoint 1</span>
+    <h1>Your student profile</h1>
+    <p>This is the map data everything else is built from — the more accurate, the better your recommendations.</p>
+  </div>
+</header>
+
+<main class="app-main">
+  <div class="container" style="max-width:760px;">
+    <div class="card">
+      <div class="form-error" id="errorBanner"></div>
+      <div class="form-success" id="successBanner"></div>
+
+      <form id="profileForm">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Full name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="field">
+            <label for="education">Education level</label>
+            <select id="education" required>
+              <option value="">Select...</option>
+              <option>Diploma</option>
+              <option>B.Tech</option>
+              <option>B.E.</option>
+              <option>B.Sc</option>
+              <option>M.Tech</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="department">Department / Branch</label>
+            <input type="text" id="department" placeholder="e.g. Information Technology" required>
+          </div>
+          <div class="field">
+            <label for="current_year">Current year</label>
+            <select id="current_year" required>
+              <option value="">Select...</option>
+              <option>1st Year</option>
+              <option>2nd Year</option>
+              <option>3rd Year</option>
+              <option>4th Year</option>
+              <option>Graduated</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="college">College / Institution</label>
+          <input type="text" id="college" placeholder="e.g. K.L.N College of Engineering" required>
+        </div>
+
+        <div class="field">
+          <label for="skills">Skills</label>
+          <textarea id="skills" placeholder="e.g. HTML, CSS, JavaScript, Python, SQL" required></textarea>
+          <span class="hint">Separate with commas.</span>
+        </div>
+
+        <div class="field">
+          <label for="interests">Interests</label>
+          <textarea id="interests" placeholder="e.g. Web Development, AI, Robotics" required></textarea>
+          <span class="hint">Separate with commas.</span>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="daily_study_hours">Daily study hours available</label>
+            <input type="number" id="daily_study_hours" min="0.5" max="16" step="0.5" placeholder="e.g. 3" required>
+          </div>
+          <div class="field">
+            <label for="career_goal">Career goal <span class="tag-optional">Optional</span></label>
+            <input type="text" id="career_goal" placeholder="e.g. Full Stack Developer">
+            <span class="hint">Leave blank if you're not sure yet — our AI advisor will help.</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Save profile & continue</button>
+      </form>
+    </div>
+
+    <div class="card" id="mentorLinkCard" style="margin-top:20px;">
+      <h3 class="mt-0">Have a mentor?</h3>
+      <p class="hint">Enter the code your mentor shared to let them see your progress on their cohort dashboard.</p>
+      <div class="field" style="display:flex;gap:10px;align-items:flex-end;">
+        <div style="flex:1;">
+          <label for="mentorCode">Mentor code</label>
+          <input type="text" id="mentorCode" placeholder="e.g. A1B2C3D4" style="text-transform:uppercase;">
+        </div>
+        <button class="btn btn-secondary" id="linkMentorBtn">Link</button>
+      </div>
+      <div class="form-error" id="mentorLinkError"></div>
+      <div class="form-success" id="mentorLinkSuccess"></div>
+    </div>
+  </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>
