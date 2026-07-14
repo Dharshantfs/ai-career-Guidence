@@ -14,3 +14,5 @@ services:
       - key: FRONTEND_URL
         # Set this to the actual Render URL after deploying, e.g., https://ai-learning-planner.onrender.com
         value: http://localhost:8000
+      - key: PYTHON_VERSION
+        value: 3.12.3
