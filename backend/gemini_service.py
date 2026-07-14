@@ -14,7 +14,7 @@ from google import genai
 from google.genai import types as genai_types
 from dotenv import load_dotenv
 
-MODEL_NAME = "gemini-2.5-flash"  # fast + free-tier friendly
+MODEL_NAME = "gemini-1.5-flash"  # fast + free-tier friendly
 HARD_TIMEOUT_SECONDS = 25  # app-level cap; see _call_gemini_with_hard_timeout
 
 # Underlying gRPC connection failures (bad proxy, blocked DNS, firewalled

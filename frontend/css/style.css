@@ -75,7 +75,10 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 66px;
+  min-height: 66px;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 24px;
 }
 
 .brand {
@@ -93,7 +96,8 @@ a { color: inherit; }
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  flex-wrap: wrap;
+  gap: 14px;
   align-items: center;
   list-style: none;
   margin: 0;
@@ -103,7 +107,7 @@ a { color: inherit; }
 .nav-links a {
   color: var(--fog);
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   opacity: 0.78;
   transition: opacity 0.15s ease;
 }
